@@ -1,6 +1,8 @@
 package com.example.left_poecket;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -23,7 +25,11 @@ public class SpendingListFragment extends ListFragment {
 	@Override
     public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		mSpendings = SpendingLab.get(getActivity()).getSpendings();
+		
+		Date today = new Date();
+		SimpleDateFormat todayformat = new SimpleDateFormat("MMMM");
+		getActivity().setTitle(todayformat.format(today));
+		mSpendings = SpendingLab.get(getActivity()).getSpendingsByMonth(today.getMonth() + 1);
 		SpendingAdapter adapter = new SpendingAdapter(mSpendings);
 		setListAdapter(adapter);
 	}
@@ -55,7 +61,9 @@ public class SpendingListFragment extends ListFragment {
 			 mDesc = (TextView) convertView.findViewById(R.id.spending_list_item_descTextView);
 			 mDesc.setText(s.getmComment());
 			 mDate = (TextView) convertView.findViewById(R.id.spending_list_item_dateTextView);
-			 mDate.setText(s.getDate().toString());
+			 SimpleDateFormat  format = new SimpleDateFormat("MM/dd/yyyy");
+			 mDate.setText(format.format(s.getDate()));
+			 
 			 mAmount = (TextView) convertView.findViewById(R.id.spending_list_item_amountTextView);
 			 mAmount.setText("" + s.getAmount());
 			 return convertView;

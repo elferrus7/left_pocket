@@ -1,6 +1,7 @@
 package com.example.left_poecket;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import android.content.Context;
 import android.util.Log;
@@ -40,6 +41,18 @@ public class SpendingLab {
     
     public ArrayList<Spending> getSpendings(){
     	return mSpendings;
+    }
+    public ArrayList<Spending> getSpendingsByMonth(int month){
+    	ArrayList<Spending> orderedS = new ArrayList<Spending>();
+    	
+    	for(Spending s: getSpendings()){
+    		Date d = s.getDate();
+    		if(d.getMonth() == month){
+    			orderedS.add(s);
+    		}
+    	}
+    	
+    	return orderedS;
     }
     public boolean saveSpendings(){
     	try {
