@@ -16,6 +16,7 @@ public class Spending {
 	public Date mDate;
 	private String mComment;
 	
+	
 	private static final String JSON_AMOUNT = "amount";
 	private static final String JSON_TYPE= "type";
 	private static final String JSON_FORM_PAYMENT = "form_payment";
@@ -37,7 +38,7 @@ public class Spending {
 		mAmount = json.getInt(JSON_AMOUNT);
 		mType = json.getInt(JSON_TYPE);
 		mFormPayment = json.getInt(JSON_TYPE);
-		SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+		SimpleDateFormat  format = new SimpleDateFormat("MM/dd/yyyy");
 		try {
 		    mDate = format.parse(json.getString(JSON_DATE));  
 		} catch (ParseException e) {  
@@ -52,7 +53,8 @@ public class Spending {
 		json.put(JSON_AMOUNT, mAmount);
 		json.put(JSON_TYPE, mType);
 		json.put(JSON_FORM_PAYMENT, mFormPayment);
-		json.put(JSON_DATE, mDate.toString());
+		SimpleDateFormat  formattter = new SimpleDateFormat("MM/dd/yyyy");
+		json.put(JSON_DATE, formattter.format(mDate));
 		json.put(JSON_COMMENT, mComment);
 		Log.d("SpendingLab","Json; " + json.toString());
 		return json;
@@ -82,4 +84,10 @@ public class Spending {
 	public void setAmount(double d) {
 		this.mAmount = d;
 	}
+	public String getmComment() {
+		return mComment;
+	}
+	public void setmComment(String mComment) {
+		this.mComment = mComment;
+	}	
 }

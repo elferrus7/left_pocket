@@ -19,7 +19,7 @@
         <item>Egreso</item>
     </string-array>
     <string name="Movimiento">Movimiento</string>
-    <string name="Fecha">Calendario</string>
+    <string name="Fecha">Fecha</string>
     <string name="Cantidad">Cantidad</string>
 
 </resources>

@@ -86,7 +86,7 @@
         android:layout_marginBottom="27dp"
         android:text="@string/btn_agregar" />
 
-    <Button
+    <TextView
         android:id="@+id/btnCalendario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

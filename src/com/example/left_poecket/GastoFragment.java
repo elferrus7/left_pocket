@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,7 +32,7 @@ public class GastoFragment extends Fragment {
 	Spinner mModoPago;
 	Spinner mTipoPago;
 	Button mGuardar;
-	Button mCalendario;
+	//Button mCalendario;
 	
 	private String initialDate;
 	private String initialMonth;
@@ -59,27 +60,30 @@ public class GastoFragment extends Fragment {
 		mCantidad = (EditText) v.findViewById(R.id.Cantidad_texto);			
 		mComentarios = (EditText) v.findViewById(R.id.txt_comentario);
 		mGuardar = (Button) v.findViewById(R.id.btnAgregar);
+		
 		mGuardar.setOnClickListener(new View.OnClickListener() {
 			
 			@SuppressLint("SimpleDateFormat")
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub			
+				// TODO Auto-generated method stub
+				
 				try{
 					double cantidad = Double.parseDouble(mCantidad.getText().toString());
 					int tipo = mTipoPago.getSelectedItemPosition();
 					int modo = mModoPago.getSelectedItemPosition();
 					String fechastring = mFecha.getText().toString();
-					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+					SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 					Date date = format.parse(fechastring);
+					Log.d("SpendingLab","Date: " + date.toString() + " datepicker: " + mFecha.getText().toString());
 					String comentarios = mComentarios.getText().toString();
 					mGasto = new Spending(cantidad,tipo,modo,date,comentarios);
-					
-					
+					SpendingLab.get(getActivity()).addSpending(mGasto);	
 					
 				} catch (java.text.ParseException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Log.e("SpendingLab","You faild to click!",e);
+					//e.printStackTrace();
 				}
 				
 				
@@ -87,9 +91,12 @@ public class GastoFragment extends Fragment {
 		});
 		
 		mFecha = (EditText) v.findViewById(R.id.txtFecha);
+		Date today = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+		mFecha.setText(formatter.format(today));
 		
-		mCalendario = (Button) v.findViewById(R.id.btnCalendario);
-		mCalendario.setOnClickListener(new View.OnClickListener() {
+		//mCalendario = (Button) v.findViewById(R.id.btnCalendario);
+		mFecha.setOnClickListener(new View.OnClickListener() {
 			
 			@SuppressWarnings("deprecation")
 			@Override

@@ -7,7 +7,7 @@ import android.util.Log;
 
 public class SpendingLab {
 	private static final String TAG = "SpendingLab";
-    private static final String FILENAME = "spendings3.json";
+    private static final String FILENAME = "spendings5.json";
     
     private ArrayList<Spending> mSpendings;
     private SpendingJSONSerializer mSerializer;
