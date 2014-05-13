@@ -11,14 +11,6 @@
         android:gravity="center"
         android:text="@string/Movimiento"
         android:textSize="30sp" />
-    
-    <Button
-        android:id="@+id/btnFecha"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Titulo"        
-        android:text="@string/Fecha"        
-        />
      <TextView
         android:id="@+id/FechaActual"
         android:layout_width="wrap_content"
@@ -41,16 +33,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/modo_pago"
-        android:layout_below="@+id/btnFecha"
+        android:layout_below="@+id/btnCalendario"
         android:text="@string/Cantidad"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
+    
     <EditText
         android:id="@+id/Cantidad_texto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/btnFecha"
+        android:layout_below="@+id/btnCalendario"
         android:layout_marginRight="17dp"
         android:ems="5"
         android:inputType="numberDecimal" >
@@ -66,5 +58,21 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="27dp"
         android:text="@string/btn_agregar" />
+
+    <Button
+        android:id="@+id/btnCalendario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Titulo"
+        android:text="@string/Fecha" />
+
+    <EditText
+        android:id="@+id/txtFecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnCalendario"
+        android:layout_alignBottom="@+id/btnCalendario"
+        android:layout_alignParentRight="true"
+        android:ems="10" />
 
 </RelativeLayout>

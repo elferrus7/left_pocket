@@ -2,6 +2,8 @@ package com.example.left_poecket;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.DatePickerDialog;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,17 +20,22 @@ import android.widget.Spinner;
 
 @SuppressLint("NewApi")
 public class GastoFragment extends Fragment {
+	
 	Spending mGasto;
 	EditText mCantidad;
+	EditText mFecha;
 	Spinner mModoPago;
 	Button mGuardar;
-
+	Button mCalendario;
+	Context context;
 	
+	private String initialDate;
+	private String initialMonth;
+	private String initialYear;
+	private DatePickerDialog dialog = null;
 	static final int DATE_PICKER_ID = 1111;
 	
-	private int year;
-	private int month;
-	private int day;
+
 	
 	
 	@Override
@@ -89,6 +96,26 @@ public class GastoFragment extends Fragment {
 			}
 		});
 		
+		mFecha = (EditText) v.findViewById(R.id.txtFecha);
+		
+		mCalendario = (Button) v.findViewById(R.id.btnCalendario);
+		mCalendario.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Calendar dtTxt = null;
+				String preExistingDate = (String)mFecha.getText().toString();
+				if(preExistingDate != null && !preExistingDate.equals("")){
+					
+					String Tokenizer st = new String Tokenizer(preExistingDate,"/");
+				}
+				
+			}
+		});
+		
+		
+		
 		
 
 		
@@ -107,6 +134,9 @@ public class GastoFragment extends Fragment {
 		// TODO Auto-generated method stub
 		mModoPago = (Spinner) v.findViewById(R.id.modo_pago);		
 	}
+
+	
+
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
