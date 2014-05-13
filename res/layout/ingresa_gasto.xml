@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/Titulo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/Movimiento"
+        android:textSize="30sp" />
+    
+    <Button
+        android:id="@+id/btnFecha"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Titulo"        
+        android:text="@string/Fecha"        
+        />
+     <TextView
+        android:id="@+id/FechaActual"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+     
+    <Spinner
+        android:id="@+id/modo_pago"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Cantidad_texto"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="50dp"
+        android:entries="@array/modo_pago"
+        android:prompt="@string/modo_selector" />
+
+    <TextView
+        android:id="@+id/cantidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/modo_pago"
+        android:layout_below="@+id/btnFecha"
+        android:text="@string/Cantidad"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/Cantidad_texto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/btnFecha"
+        android:layout_marginRight="17dp"
+        android:ems="5"
+        android:inputType="numberDecimal" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/btnAgregar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="27dp"
+        android:text="@string/btn_agregar" />
+
+</RelativeLayout>
