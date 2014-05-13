@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+	<TextView
+    	android:id="@+id/Detalles_gastotitleTextView"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:paddingLeft="4dp"
+    	android:paddingRight="4dp"
+    	android:text="@string/v_detalles"
+    	android:textStyle="bold" />
+	
+    <TextView
+        android:id="@+id/Detalles_gastosubtitleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:text="@string/v_detalles_subtitle"
+        android:textStyle="bold" />
+    
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Chart_layout"
+        android:orientation="vertical">
+    </LinearLayout>
+</LinearLayout>

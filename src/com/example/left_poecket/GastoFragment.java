@@ -22,7 +22,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-@SuppressLint("NewApi")
+@SuppressLint({ "NewApi", "SimpleDateFormat" })
 public class GastoFragment extends Fragment {
 	
 	Spending mGasto;
