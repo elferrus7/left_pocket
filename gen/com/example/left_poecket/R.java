@@ -16,6 +16,9 @@ public final class R {
         public static final int abc_slide_out_bottom=0x7f040004;
         public static final int abc_slide_out_top=0x7f040005;
     }
+    public static final class array {
+        public static final int modo_pago=0x7f0c0000;
+    }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
@@ -1198,9 +1201,12 @@ containing a value of this type.
         public static final int support_simple_spinner_dropdown_item=0x7f03001a;
     }
     public static final class menu {
-        public static final int main=0x7f0c0000;
+        public static final int main=0x7f0d0000;
     }
     public static final class string {
+        public static final int Cantidad=0x7f0a0014;
+        public static final int Fecha=0x7f0a0013;
+        public static final int Movimiento=0x7f0a0012;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
         public static final int abc_action_bar_home_description=0x7f0a0001;
@@ -1243,7 +1249,9 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with_application=0x7f0a000b;
         public static final int action_settings=0x7f0a000f;
         public static final int app_name=0x7f0a000d;
+        public static final int btn_agregar=0x7f0a0010;
         public static final int hello_world=0x7f0a000e;
+        public static final int modo_selector=0x7f0a0011;
     }
     public static final class style {
         /** 
