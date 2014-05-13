@@ -3,12 +3,12 @@ package com.example.left_poecket;
 import java.util.Date;
 
 public class Spending {
-	private float amount;
+	private double amount;
 	private int type;
 	private int form_payment;
 	private Date date;
 	
-	public Spending(float amount, int type, int form_payment, Date date) {
+	public Spending(double amount, int type, int form_payment, Date date) {
 		super();
 		this.amount = amount;
 		this.type = type;
@@ -16,11 +16,11 @@ public class Spending {
 		this.date = date;
 	}
 	
-	public float getAmount() {
+	public double getAmount() {
 		return amount;
 	}
-	public void setAmount(float amount) {
-		this.amount = amount;
+	public void setAmount(double d) {
+		this.amount = d;
 	}
 	public int getType() {
 		return type;
