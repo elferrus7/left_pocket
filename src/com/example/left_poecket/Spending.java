@@ -22,6 +22,8 @@ public class Spending {
 	private static final String JSON_DATE = "date";
 	private static final String JSON_COMMENT = "comment";
 	
+	
+	
 	public Spending(double amount, int type, int form_payment, Date d,String comment) {
 		//super();
 		this.mAmount = amount;
@@ -59,9 +61,6 @@ public class Spending {
 	public double getAmount() {
 		return mAmount;
 	}
-	/*public void setAmount(double d) {
-		this.mAmount = d;
-	}*/
 	public int getType() {
 		return mType;
 	}

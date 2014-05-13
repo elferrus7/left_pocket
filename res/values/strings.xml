@@ -5,12 +5,18 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="btn_agregar">Agregar</string>
+    <string name="Comentarios">Comentarios</string>
     <string name="modo_selector">Selecciona modo de pago</string>
     <string-array name="modo_pago">
         <item>Efectivo</item>
         <item>Tarjeta</item>
         <item>Cheque</item>
         <item>Vales</item>
+    </string-array>
+    <string name="tipo_selector">Selecciona tipo de pago</string>
+    <string-array name="tipo_pago">
+        <item>Ingreso</item>
+        <item>Egreso</item>
     </string-array>
     <string name="Movimiento">Movimiento</string>
     <string name="Fecha">Calendario</string>

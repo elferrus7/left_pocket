@@ -27,6 +27,33 @@
         android:layout_marginTop="50dp"
         android:entries="@array/modo_pago"
         android:prompt="@string/modo_selector" />
+    <Spinner
+        android:id="@+id/tipo_pago"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/modo_pago"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="50dp"
+        android:entries="@array/tipo_pago"
+        android:prompt="@string/tipo_selector" />
+    
+    <TextView
+        android:id="@+id/lbl_comentario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tipo_pago"
+        android:text="@string/Comentarios"
+        
+        
+        />
+    
+    <EditText
+        android:id="@+id/txt_comentario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lbl_comentario"
+        
+        />
 
     <TextView
         android:id="@+id/cantidad"
