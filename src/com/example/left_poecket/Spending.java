@@ -59,9 +59,9 @@ public class Spending {
 	public double getAmount() {
 		return mAmount;
 	}
-	public void setAmount(float amount) {
-		this.mAmount = amount;
-	}
+	/*public void setAmount(double d) {
+		this.mAmount = d;
+	}*/
 	public int getType() {
 		return mType;
 	}
@@ -79,5 +79,8 @@ public class Spending {
 	}
 	public void setDate(Date date) {
 		this.mDate = date;
+	}
+	public void setAmount(double d) {
+		this.mAmount = d;
 	}
 }
