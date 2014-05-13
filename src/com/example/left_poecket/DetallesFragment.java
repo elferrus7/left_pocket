@@ -17,6 +17,7 @@ public class DetallesFragment extends Fragment {
 	XYSeriesRenderer efectivo;
 	XYSeriesRenderer cheques;
 	XYSeriesRenderer vales;
+	
 	private GraphicalView mChart;
 	private String mMonth[] = new String[] {"Ene", "Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"};
 
