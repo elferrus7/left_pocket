@@ -14,7 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class MainActivity extends ActionBarActivity {
+
 public class MainActivity extends SingleFragmentActivity {
 
 	@Override
@@ -22,7 +22,4 @@ public class MainActivity extends SingleFragmentActivity {
 		// TODO Auto-generated method stub
 		return new GastoFragment();
 	}
-
-   
-
 }
