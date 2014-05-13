@@ -1,43 +1,83 @@
 package com.example.left_poecket;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.util.Log;
+
 public class Spending {
-	private double amount;
-	private int type;
-	private int form_payment;
-	private Date date;
+	private double mAmount;
+	private int mType; //Ingreo o egreso
+	private int mFormPayment;
+	public Date mDate;
+	private String mComment;
 	
-	public Spending(double amount, int type, int form_payment, Date date) {
-		super();
-		this.amount = amount;
-		this.type = type;
-		this.form_payment = form_payment;
-		this.date = date;
+	private static final String JSON_AMOUNT = "amount";
+	private static final String JSON_TYPE= "type";
+	private static final String JSON_FORM_PAYMENT = "form_payment";
+	private static final String JSON_DATE = "date";
+	private static final String JSON_COMMENT = "comment";
+	
+	public Spending(double amount, int type, int form_payment, Date d,String comment) {
+		//super();
+		this.mAmount = amount;
+		this.mType = type;
+		this.mFormPayment = form_payment;
+		this.mDate = d;
+		Log.d("SpendingLab","d: " + d.toString() + " mDate: " + this.mDate.toString());
+		this.mComment = comment;
+	}
+	public Spending(JSONObject json) throws JSONException{
+		mAmount = json.getInt(JSON_AMOUNT);
+		mType = json.getInt(JSON_TYPE);
+		mFormPayment = json.getInt(JSON_TYPE);
+		SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+		try {
+		    mDate = format.parse(json.getString(JSON_DATE));  
+		} catch (ParseException e) {  
+		    // TODO Auto-generated catch block  
+		    e.printStackTrace();  
+		}
+		mComment = json.getString(JSON_COMMENT);
+	}
+	public JSONObject toJSON() throws JSONException{
+		//mDate = new Date();
+		JSONObject json = new JSONObject();
+		json.put(JSON_AMOUNT, mAmount);
+		json.put(JSON_TYPE, mType);
+		json.put(JSON_FORM_PAYMENT, mFormPayment);
+		json.put(JSON_DATE, mDate.toString());
+		json.put(JSON_COMMENT, mComment);
+		Log.d("SpendingLab","Json; " + json.toString());
+		return json;
 	}
 	
 	public double getAmount() {
-		return amount;
+		return mAmount;
 	}
-	public void setAmount(double d) {
-		this.amount = d;
+	public void setAmount(float amount) {
+		this.mAmount = amount;
 	}
 	public int getType() {
-		return type;
+		return mType;
 	}
 	public void setType(int type) {
-		this.type = type;
+		this.mType = type;
 	}
 	public int getForm_payment() {
-		return form_payment;
+		return mFormPayment;
 	}
 	public void setForm_payment(int form_payment) {
-		this.form_payment = form_payment;
+		this.mFormPayment = form_payment;
 	}
 	public Date getDate() {
-		return date;
+		return mDate;
 	}
 	public void setDate(Date date) {
-		this.date = date;
+		this.mDate = date;
 	}
 }
