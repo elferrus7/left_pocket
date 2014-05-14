@@ -108,7 +108,7 @@ public class GastoFragment extends Fragment {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Calendar dtTxt = null;
-				String preExistingDate = (String)mFecha.getText().toString();
+				String preExistingDate = mFecha.getText().toString();
 				if(preExistingDate != null && !preExistingDate.equals("")){
 					
 					StringTokenizer st = new StringTokenizer(preExistingDate,"/");

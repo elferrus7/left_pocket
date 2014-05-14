@@ -84,7 +84,7 @@ public class DetallesFragment extends Fragment {
 		mCeroPesos = (TextView) v.findViewById(R.id.Detalles_gastosubtitleTextView);
 		
 		LinearLayout chart_container = (LinearLayout)v.findViewById(R.id.Chart_layout);
-		mChart = (GraphicalView)ChartFactory.getLineChartView(getActivity().getBaseContext(), dataset, mCanvas);
+		mChart = ChartFactory.getLineChartView(getActivity().getBaseContext(), dataset, mCanvas);
 		mChart.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
