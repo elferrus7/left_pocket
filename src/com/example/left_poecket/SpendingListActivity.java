@@ -34,7 +34,7 @@ public class SpendingListActivity extends FragmentActivity {
 		 Log.d("tag","today: "+ today.toString());
 		 for(int i = 0; i < 12; i++){
 			 Log.d("tag","Monht: " + today.get(today.MONTH)+ " aunx: " + aux + " i: " + i);
-			 if(aux >= 12)
+			 if(aux > 12)
 				 aux = 1;
 			 SpendingListFragment f = new SpendingListFragment();
 			 f.setMonth(aux);

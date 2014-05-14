@@ -28,22 +28,30 @@ public class SpendingListFragment extends ListFragment {
 	TextView mDate;
 	TextView mAmount;
 	int mMonth = 1;
-	Calendar today;
 	public void setMonth(int month){
 		this.mMonth = month;
 	}
+	
+	
 	
 	@Override
     public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		
-		today = Calendar.getInstance();
-		today.set(today.MONTH, mMonth);
+		 Calendar today = Calendar.getInstance();
+		 today.set(today.MONTH, mMonth);
+		 SimpleDateFormat todayformat = new SimpleDateFormat("MMMM");
+		 getActivity().setTitle(todayformat.format(today.getTime()));
+		 Log.d("FUCK", "Month: " + mMonth + " today:" + today.get(today.MONTH));
 		
 		mSpendings = SpendingLab.get(getActivity()).getSpendingsByMonth(mMonth);
 		SpendingAdapter adapter = new SpendingAdapter(mSpendings);
 		setListAdapter(adapter);
 		setHasOptionsMenu(true);
+	}
+	
+	public void setTitle(){
+		
 	}
 	
 	@Override
@@ -91,9 +99,7 @@ public class SpendingListFragment extends ListFragment {
 			 if (null == convertView) {
 	                convertView = getActivity().getLayoutInflater().inflate(R.layout.list_item_spending, null);
 	         }
-			 SimpleDateFormat todayformat = new SimpleDateFormat("MMMM");
-			 getActivity().setTitle(todayformat.format(today.getTime()));
-			 Log.d("FUCK", "Month: " + mMonth + " today:" + today.get(today.MONTH));
+			 
 			 Spending s =  getItem(position);
 			 
 			 mDesc = (TextView) convertView.findViewById(R.id.spending_list_item_descTextView);

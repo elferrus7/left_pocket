@@ -24,6 +24,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 @SuppressLint({ "NewApi", "SimpleDateFormat" })
 public class GastoFragment extends Fragment {
@@ -84,7 +85,9 @@ public class GastoFragment extends Fragment {
 					String comentarios = mComentarios.getText().toString();
 					mGasto = new Spending(cantidad,tipo,modo,date,comentarios);
 					SpendingLab.get(getActivity()).addSpending(mGasto);	
-					
+					Toast.makeText(getActivity().getBaseContext(), "Spending Saved", Toast.LENGTH_LONG).show();
+					mComentarios.setText("");
+					mCantidad.setText("");
 				} catch (java.text.ParseException e) {
 					// TODO Auto-generated catch block
 					Log.e("SpendingLab","You faild to click!",e);
