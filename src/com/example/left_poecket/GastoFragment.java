@@ -14,6 +14,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -142,10 +144,17 @@ public class GastoFragment extends Fragment {
 	}
 
 	@Override
+	public void onCreateOptionsMenu(Menu menu,MenuInflater inflater){
+		inflater.inflate(R.menu.add_gasto, menu);
+	}
+	
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
 		switch (item.getItemId()){
 		case android.R.id.home:
 			NavUtils.navigateUpFromSameTask(getActivity());
+			return true;
+		case R.id.List_Gasto:
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

@@ -15,8 +15,11 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.left_poecket.SpendingListActivity"
+            android:name="com.example.left_poecket.MainActivity"
             android:label="@string/app_name" >
+            <meta-data 
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.left_poecket.SpendingListActivity"/>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,11 +27,15 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="com.example.left_poecket.SpendingListActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
             android:name="com.example.left_poecket.DetallesActivity"
             android:label="@string/app_name" >
             <meta-data 
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.left_poecket.algunaactividadpadre"/>
+                android:value="com.example.left_poecket.SpendingListActivity"/>
         </activity>
     </application>
 

@@ -9,6 +9,9 @@
     <string name="modo_selector">Selecciona modo de pago</string>
     <string name="v_detalles">Detalles del mes</string>
     <string name="v_detalles_subtitle">0 Pesos</string>
+    <string name="agregar_titulo">Agregar</string>
+	<string name="detalles_titulo">Detalles</string>
+	<string name="list_back">Regresar</string>
     <string-array name="modo_pago">
         <item>Efectivo</item>
         <item>Tarjeta</item>

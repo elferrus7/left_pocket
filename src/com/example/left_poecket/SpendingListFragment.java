@@ -6,8 +6,12 @@ import java.util.Date;
 
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -40,6 +44,27 @@ public class SpendingListFragment extends ListFragment {
         return v;
 	}
 	
+	@Override
+	public void onCreateOptionsMenu(Menu menu,MenuInflater inflater){
+		inflater.inflate(R.menu.list_mes, menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item){
+		switch(item.getItemId()){
+			case android.R.id.home:
+				NavUtils.navigateUpFromSameTask(getActivity());
+				return true;
+			case R.id.add_Gasto:
+				
+				return true;
+			case R.id.detalles_Gasto:
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
+	}
+	
 	 public void onListItemClick(ListView l, View v, int position, long id){
 		 Log.d("SpendingLab", "You clicke me!");
 	 }
@@ -69,4 +94,6 @@ public class SpendingListFragment extends ListFragment {
 			 return convertView;
 		 }
 	 }
+	 
+	 
 }
