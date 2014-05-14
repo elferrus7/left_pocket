@@ -45,7 +45,9 @@ public class GastoFragment extends Fragment {
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
+		setHasOptionsMenu(true);
 		super.onCreate(savedInstanceState);
+		
 		
 	}
 	
@@ -153,14 +155,11 @@ public class GastoFragment extends Fragment {
 	public boolean onOptionsItemSelected(MenuItem item){
 		switch (item.getItemId()){
 		case android.R.id.home:
-			Intent i = new Intent(getActivity(),DetallesActivity.class);
-			NavUtils.navigateUpTo(getActivity(), i);
-			//NavUtils.navigateUpFromSameTask(getActivity());
-			
+			Intent i = new Intent(getActivity(),SpendingListActivity.class);			
 			startActivityForResult(i,0);
 			return true;
 		case R.id.List_Gasto:
-			Intent j = new Intent(getActivity(),SpendingListActivity.class);
+			Intent j = new Intent(getActivity(),DetallesActivity.class);
 			startActivityForResult(j,0);
   			return true;
 		default:

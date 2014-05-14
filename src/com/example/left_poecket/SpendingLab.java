@@ -56,7 +56,6 @@ public class SpendingLab {
     }
     public ArrayList<Spending> getSpendingsByTypeAndMonth(int month,int type){
     	ArrayList<Spending> orderedS = new ArrayList<Spending>();
-    	ArrayList<Spending> auxS = new ArrayList<Spending>();
     	
     	for(Spending s: getSpendings()){
     		Date d = s.getDate();

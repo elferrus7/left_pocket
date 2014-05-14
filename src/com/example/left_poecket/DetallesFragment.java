@@ -66,6 +66,7 @@ public class DetallesFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		setHasOptionsMenu(true);
 		
 	}
 	
@@ -132,8 +133,8 @@ public class DetallesFragment extends Fragment {
 	
 	public void OpenChart(){
 		
-		ArrayList<Spending> Ingreso = SpendingLab.get(getActivity()).getSpendingsByTypeAndMonth(1, 0);
-		ArrayList<Spending> Egreso = SpendingLab.get(getActivity()).getSpendingsByTypeAndMonth(1, 1);
+		ArrayList<Spending> Ingreso = SpendingLab.get(getActivity()).getSpendingsByTypeAndMonth(7, 0);
+		ArrayList<Spending> Egreso = SpendingLab.get(getActivity()).getSpendingsByTypeAndMonth(7, 1);
 		ArrayList<Double> Saldo = calculaProm(Ingreso,Egreso);
 		
 		XYSeries sIngreso = new XYSeries("Ingreso");
@@ -240,12 +241,8 @@ public class DetallesFragment extends Fragment {
 	public boolean onOptionsItemSelected(MenuItem item){
 		switch (item.getItemId()){
 			case android.R.id.home:
-				//NavUtils.navigateUpFromSameTask(getActivity());
-				Intent i = new Intent(getActivity(),DetallesActivity.class);
+				Intent i = new Intent(getActivity(),SpendingListActivity.class);
 				startActivityForResult(i,0);
-				/*Intent i = new Intent(SpendingListFragment.this, DetallesActivity.class);
-				 startActivityForResult(i,0);
-				 */
 			default:
 				return super.onOptionsItemSelected(item);
 		}

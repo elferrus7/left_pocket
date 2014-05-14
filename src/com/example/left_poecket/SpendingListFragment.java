@@ -43,6 +43,7 @@ public class SpendingListFragment extends ListFragment {
 		mSpendings = SpendingLab.get(getActivity()).getSpendingsByMonth(mMonth);
 		SpendingAdapter adapter = new SpendingAdapter(mSpendings);
 		setListAdapter(adapter);
+		setHasOptionsMenu(true);
 	}
 	
 	@Override
@@ -51,8 +52,31 @@ public class SpendingListFragment extends ListFragment {
         return v;
 	}
 	
-	 @Override
-	public void onListItemClick(ListView l, View v, int position, long id){
+	@Override
+	public void onCreateOptionsMenu(Menu menu,MenuInflater inflater){
+		inflater.inflate(R.menu.list_mes, menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item){
+		switch(item.getItemId()){
+			case android.R.id.home:
+				//NavUtils.navigateUpFromSameTask(getActivity());
+				return true;
+			case R.id.add_Gasto:
+				Intent i = new Intent(getActivity(),MainActivity.class);
+				startActivityForResult(i,0);
+				return true;
+			case R.id.detalles_Gasto:
+				Intent j = new Intent(getActivity(),DetallesActivity.class);
+				startActivityForResult(j,0);
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
+	}
+	
+	 public void onListItemClick(ListView l, View v, int position, long id){
 		 Log.d("SpendingLab", "You clicke me!");
 	 }
 	 
