@@ -2,6 +2,7 @@ package com.example.left_poecket;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import android.os.Bundle;
@@ -21,15 +22,22 @@ public class SpendingListFragment extends ListFragment {
 	TextView mDesc;
 	TextView mDate;
 	TextView mAmount;
+	int mMonth = 1;
+	
+	public void setMonth(int month){
+		this.mMonth = month;
+	}
 	
 	@Override
     public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		
-		Date today = new Date();
+		Calendar today = Calendar.getInstance();
+		today.set(today.MONTH, mMonth);
 		SimpleDateFormat todayformat = new SimpleDateFormat("MMMM");
-		getActivity().setTitle(todayformat.format(today));
-		mSpendings = SpendingLab.get(getActivity()).getSpendingsByMonth(today.getMonth() + 1);
+		getActivity().setTitle(todayformat.format(today.getTime()));
+		Log.d("FUCK", "Month: " + mMonth + " today:" + today.get(today.MONTH));
+		mSpendings = SpendingLab.get(getActivity()).getSpendingsByMonth(mMonth);
 		SpendingAdapter adapter = new SpendingAdapter(mSpendings);
 		setListAdapter(adapter);
 	}
@@ -40,7 +48,8 @@ public class SpendingListFragment extends ListFragment {
         return v;
 	}
 	
-	 public void onListItemClick(ListView l, View v, int position, long id){
+	 @Override
+	public void onListItemClick(ListView l, View v, int position, long id){
 		 Log.d("SpendingLab", "You clicke me!");
 	 }
 	 
