@@ -71,6 +71,7 @@ public class SpendingListFragment extends ListFragment {
 				return true;
 			case R.id.detalles_Gasto:
 				Intent j = new Intent(getActivity(),DetallesActivity.class);
+				j.putExtra("mes", mMonth+"");
 				startActivityForResult(j,0);
 				return true;
 			default:

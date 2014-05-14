@@ -18,6 +18,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,6 +34,11 @@ public class DetallesFragment extends Fragment {
 	
 	XYMultipleSeriesDataset dataset;
 	XYMultipleSeriesRenderer mCanvas;
+	
+	public static final int EXTRA_MES = 0 ;
+	 
+	String MES;
+	int IntMes;
 	
 	Spending mSpending;
 	TextView mIngreso;
@@ -63,10 +69,16 @@ public class DetallesFragment extends Fragment {
 		return array;
 	}
 	
+	public void setMonth(String month){
+		this.MES = month;
+		
+	}
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
+		Log.d("MES", this.MES);
 		
 	}
 	
@@ -131,10 +143,12 @@ public class DetallesFragment extends Fragment {
 		return v;
 	}
 	
-	public void OpenChart(){
+	public void OpenChart(){	
 		
-		ArrayList<Spending> Ingreso = SpendingLab.get(getActivity()).getSpendingsByTypeAndMonth(7, 0);
-		ArrayList<Spending> Egreso = SpendingLab.get(getActivity()).getSpendingsByTypeAndMonth(7, 1);
+		IntMes = Integer.parseInt(MES);
+		System.out.println(IntMes);
+		ArrayList<Spending> Ingreso = SpendingLab.get(getActivity()).getSpendingsByTypeAndMonth(IntMes, 0);
+		ArrayList<Spending> Egreso = SpendingLab.get(getActivity()).getSpendingsByTypeAndMonth(IntMes, 1);
 		ArrayList<Double> Saldo = calculaProm(Ingreso,Egreso);
 		
 		XYSeries sIngreso = new XYSeries("Ingreso");
