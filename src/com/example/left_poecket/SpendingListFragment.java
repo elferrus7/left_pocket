@@ -37,6 +37,7 @@ public class SpendingListFragment extends ListFragment {
 		mSpendings = SpendingLab.get(getActivity()).getSpendingsByMonth(today.getMonth() + 1);
 		SpendingAdapter adapter = new SpendingAdapter(mSpendings);
 		setListAdapter(adapter);
+		setHasOptionsMenu(true);
 	}
 	
 	@Override
@@ -54,7 +55,7 @@ public class SpendingListFragment extends ListFragment {
 	public boolean onOptionsItemSelected(MenuItem item){
 		switch(item.getItemId()){
 			case android.R.id.home:
-				NavUtils.navigateUpFromSameTask(getActivity());
+				//NavUtils.navigateUpFromSameTask(getActivity());
 				return true;
 			case R.id.add_Gasto:
 				Intent i = new Intent(getActivity(),MainActivity.class);

@@ -66,6 +66,7 @@ public class DetallesFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		setHasOptionsMenu(true);
 		
 	}
 	
@@ -240,12 +241,8 @@ public class DetallesFragment extends Fragment {
 	public boolean onOptionsItemSelected(MenuItem item){
 		switch (item.getItemId()){
 			case android.R.id.home:
-				//NavUtils.navigateUpFromSameTask(getActivity());
-				Intent i = new Intent(getActivity(),DetallesActivity.class);
+				Intent i = new Intent(getActivity(),SpendingListActivity.class);
 				startActivityForResult(i,0);
-				/*Intent i = new Intent(SpendingListFragment.this, DetallesActivity.class);
-				 startActivityForResult(i,0);
-				 */
 			default:
 				return super.onOptionsItemSelected(item);
 		}
