@@ -153,13 +153,16 @@ public class GastoFragment extends Fragment {
 	public boolean onOptionsItemSelected(MenuItem item){
 		switch (item.getItemId()){
 		case android.R.id.home:
-			NavUtils.navigateUpFromSameTask(getActivity());
+			Intent i = new Intent(getActivity(),DetallesActivity.class);
+			NavUtils.navigateUpTo(getActivity(), i);
+			//NavUtils.navigateUpFromSameTask(getActivity());
+			
+			startActivityForResult(i,0);
 			return true;
 		case R.id.List_Gasto:
-			/*Intent i = new Intent(GastoFragment.this, SpendingListActivity.class);
-            startActivityForResult(i, 0);
-            */
-			return true;
+			Intent j = new Intent(getActivity(),SpendingListActivity.class);
+			startActivityForResult(j,0);
+  			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}

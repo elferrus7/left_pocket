@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.NavUtils;
@@ -56,14 +57,12 @@ public class SpendingListFragment extends ListFragment {
 				NavUtils.navigateUpFromSameTask(getActivity());
 				return true;
 			case R.id.add_Gasto:
-				/*Intent i = new Intent(SpendingListFragment.this, MainActivity.class);
-	            startActivityForResult(i, 0);
-	            */
+				Intent i = new Intent(getActivity(),MainActivity.class);
+				startActivityForResult(i,0);
 				return true;
 			case R.id.detalles_Gasto:
-				/*Intent i = new Intent(SpendingListFragment.this, DetallesActivity.class);
-				 startActivityForResult(i,0);
-				 */
+				Intent j = new Intent(getActivity(),DetallesActivity.class);
+				startActivityForResult(j,0);
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);

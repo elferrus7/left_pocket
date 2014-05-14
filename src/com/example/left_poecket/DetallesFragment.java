@@ -12,6 +12,7 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -239,10 +240,12 @@ public class DetallesFragment extends Fragment {
 	public boolean onOptionsItemSelected(MenuItem item){
 		switch (item.getItemId()){
 			case android.R.id.home:
-				NavUtils.navigateUpFromSameTask(getActivity());
+				//NavUtils.navigateUpFromSameTask(getActivity());
+				Intent i = new Intent(getActivity(),DetallesActivity.class);
+				startActivityForResult(i,0);
 				/*Intent i = new Intent(SpendingListFragment.this, DetallesActivity.class);
 				 startActivityForResult(i,0);
-				 * */
+				 */
 			default:
 				return super.onOptionsItemSelected(item);
 		}
