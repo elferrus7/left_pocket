@@ -133,8 +133,8 @@ public class DetallesFragment extends Fragment {
 	
 	public void OpenChart(){
 		
-		ArrayList<Spending> Ingreso = SpendingLab.get(getActivity()).getSpendingsByTypeAndMonth(1, 0);
-		ArrayList<Spending> Egreso = SpendingLab.get(getActivity()).getSpendingsByTypeAndMonth(1, 1);
+		ArrayList<Spending> Ingreso = SpendingLab.get(getActivity()).getSpendingsByTypeAndMonth(7, 0);
+		ArrayList<Spending> Egreso = SpendingLab.get(getActivity()).getSpendingsByTypeAndMonth(7, 1);
 		ArrayList<Double> Saldo = calculaProm(Ingreso,Egreso);
 		
 		XYSeries sIngreso = new XYSeries("Ingreso");
