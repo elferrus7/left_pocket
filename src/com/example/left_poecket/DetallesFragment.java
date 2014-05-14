@@ -18,6 +18,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,15 +35,21 @@ public class DetallesFragment extends Fragment {
 	XYMultipleSeriesDataset dataset;
 	XYMultipleSeriesRenderer mCanvas;
 	
+	public static final int EXTRA_MES = 0 ;
+	 
+	String MES;
+	int IntMes;
+	
 	Spending mSpending;
 	TextView mIngreso;
 	TextView mEgreso;
 	TextView mGasto;
 	TextView mCeroPesos;
 	
-	XYSeriesRenderer ingresos;
-	XYSeriesRenderer egresos;
-	XYSeriesRenderer saldo;
+	XYSeriesRenderer ringresos;
+	XYSeriesRenderer regresos;
+	XYSeriesRenderer rsaldo;
+	XYSeriesRenderer prueba;
 	
 	XYSeriesRenderer tarjeta;
 	XYSeriesRenderer efectivo;
@@ -63,10 +70,16 @@ public class DetallesFragment extends Fragment {
 		return array;
 	}
 	
+	public void setMonth(String month){
+		this.MES = month;
+		
+	}
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
+		Log.d("MES", this.MES);
 		
 	}
 	
@@ -131,53 +144,75 @@ public class DetallesFragment extends Fragment {
 		return v;
 	}
 	
-	public void OpenChart(){
+	public void OpenChart(){	
 		
-		ArrayList<Spending> Ingreso = SpendingLab.get(getActivity()).getSpendingsByTypeAndMonth(7, 0);
-		ArrayList<Spending> Egreso = SpendingLab.get(getActivity()).getSpendingsByTypeAndMonth(7, 1);
-		ArrayList<Double> Saldo = calculaProm(Ingreso,Egreso);
+		IntMes = Integer.parseInt(MES);
+		System.out.println(IntMes);
+		ArrayList<Spending> ingreso = SpendingLab.get(getActivity()).getSpendingsByTypeAndMonth(IntMes, 0);
+		ArrayList<Spending> egreso = SpendingLab.get(getActivity()).getSpendingsByTypeAndMonth(IntMes, 1);
+		ArrayList<Double> saldo = calculaProm(ingreso,egreso);
+		
+//		for(int i = 0; i<ingreso.size();i++){
+//			System.out.println((int)ingreso.get(i).getAmount());
+//		}
+//		for(int i = 0; i<egreso.size();i++){
+//			System.out.println(egreso.get(i).getAmount());
+//		}
+//		for(int i = 0; i<saldo.size();i++){
+//			System.out.println(saldo.get(i).doubleValue());
+//		}
+//		System.out.println("Checa valores ");
 		
 		XYSeries sIngreso = new XYSeries("Ingreso");
-		for(int i = 0;i<Ingreso.size();i++){
-			sIngreso.add(i, Ingreso.get(i).getAmount());
+		for(int i = 0;i<ingreso.size();i++){
+			sIngreso.add(i,(int) ingreso.get(i).getAmount());
+			Log.d("g","Ingreso "+ (int) ingreso.get(i).getAmount());
 		}
 		
 		XYSeries sEgreso = new XYSeries("Egreso");
-		for(int i = 0;i<Egreso.size();i++){
-			sEgreso.add(i, Egreso.get(i).getAmount());
+		for(int i = 0;i<egreso.size();i++){
+			sEgreso.add(i, (int)egreso.get(i).getAmount());
+			Log.d("g","Egreso " + (int)egreso.get(i).getAmount());
 		}
 		
 		XYSeries sSaldo = new XYSeries("Saldo");
-		for(int i = 0;i< Saldo.size();i++){
-			sSaldo.add(i, Saldo.get(i).doubleValue());
+		for(int i = 0;i< saldo.size();i++){
+			sSaldo.add(i, (int)saldo.get(i).doubleValue());
+			Log.d("g","Saldo " + (int)saldo.get(i).doubleValue());
+		}
+		
+		XYSeries sPrueba = new XYSeries("Prueba");
+		for(int i = 0; i<12;i++){
+			sPrueba.add(i, i);
 		}
 		
 		dataset = new XYMultipleSeriesDataset();
 		dataset.addSeries(sIngreso);
 		dataset.addSeries(sEgreso);
 		dataset.addSeries(sSaldo);
+		dataset.addSeries(sPrueba);
 		
 		//Caracteristicas de cada trazo
-		egresos = new XYSeriesRenderer();
-		egresos.setColor(Color.RED);
-		egresos.setPointStyle(PointStyle.CIRCLE);
-		egresos.setDisplayChartValues(true);
-		egresos.setLineWidth(4);
-		egresos.setFillPoints(true);
+		regresos = new XYSeriesRenderer();
+		regresos.setColor(Color.RED);
+		regresos.setPointStyle(PointStyle.CIRCLE);
+		regresos.setDisplayChartValues(true);
+		regresos.setLineWidth(4);
+		regresos.setFillPoints(true);
 		
-		ingresos = new XYSeriesRenderer();
-		ingresos.setColor(Color.GREEN);
-		ingresos.setPointStyle(PointStyle.DIAMOND);
-		ingresos.setDisplayChartValues(true);
-		ingresos.setLineWidth(4);
-		ingresos.setFillPoints(true);
+		ringresos = new XYSeriesRenderer();
+		ringresos.setColor(Color.GREEN);
+		ringresos.setPointStyle(PointStyle.DIAMOND);
+		ringresos.setDisplayChartValues(true);
+		ringresos.setLineWidth(4);
+		ringresos.setFillPoints(true);
 		
-		saldo = new XYSeriesRenderer();
-		saldo.setColor(Color.BLUE);
-		saldo.setPointStyle(PointStyle.X);
-		saldo.setDisplayChartValues(true);
-		saldo.setLineWidth(4);
-		saldo.setFillPoints(true);
+		rsaldo = new XYSeriesRenderer();
+		rsaldo.setColor(Color.BLUE);
+		rsaldo.setPointStyle(PointStyle.X);
+		rsaldo.setDisplayChartValues(true);
+		rsaldo.setLineWidth(4);
+		rsaldo.setFillPoints(true);
 		
 		tarjeta = new XYSeriesRenderer();
 		tarjeta.setColor(Color.YELLOW);
@@ -207,6 +242,13 @@ public class DetallesFragment extends Fragment {
 		vales.setLineWidth(4);
 		vales.setFillPoints(true);
 		
+		prueba = new XYSeriesRenderer();
+		prueba.setColor(Color.RED);
+		prueba.setPointStyle(PointStyle.CIRCLE);
+		prueba.setDisplayChartValues(true);
+		prueba.setLineWidth(4);
+		prueba.setFillPoints(true);
+		
 		//Customize del Render del canvas
 		mCanvas = new XYMultipleSeriesRenderer();
 		mCanvas.setChartTitle("Gasto del mes");
@@ -222,9 +264,10 @@ public class DetallesFragment extends Fragment {
 			mCanvas.addXTextLabel(i, m31[i]);
 		}
 		
-		mCanvas.addSeriesRenderer(ingresos);
-		mCanvas.addSeriesRenderer(egresos);
-		mCanvas.addSeriesRenderer(saldo);
+		mCanvas.addSeriesRenderer(ringresos);
+		mCanvas.addSeriesRenderer(regresos);
+		mCanvas.addSeriesRenderer(rsaldo);
+		mCanvas.addSeriesRenderer(prueba);
 		
 		
 		
