@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <item
+        android:id="@+id/add_Gasto"
+        android:orderInCategory="100"
+        android:icon="@android:drawable/ic_menu_add"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/agregar_titulo"/>
+    
+    <item
+        android:id="@+id/detalles_Gasto"
+        android:orderInCategory="100"
+        android:icon="@android:drawable/ic_menu_compass"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/detalles_titulo"/>
+    
+
+</menu>

@@ -12,12 +12,15 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +42,7 @@ public class DetallesFragment extends Fragment {
 	
 	XYSeriesRenderer ingresos;
 	XYSeriesRenderer egresos;
+	XYSeriesRenderer saldo;
 	
 	XYSeriesRenderer tarjeta;
 	XYSeriesRenderer efectivo;
@@ -51,10 +55,10 @@ public class DetallesFragment extends Fragment {
 	private String m28[] = new String[] {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28"};
 	private String m29[] = new String[] {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29"};
 	
-	private ArrayList<Integer> calculaProm(ArrayList<Integer> ingreso, ArrayList<Integer> egreso ){
-		ArrayList<Integer> array = new ArrayList<Integer>();
+	private ArrayList<Double> calculaProm(ArrayList<Spending> ingreso, ArrayList<Spending> egreso ){
+		ArrayList<Double> array = new ArrayList<Double>();
 		for(int i = 0; i< ingreso.size(); i++){
-			array.add(i,((ingreso.get(i) - egreso.get(i))));
+			array.add(i,((ingreso.get(i).getAmount() - egreso.get(i).getAmount())));
 		}
 		return array;
 	}
@@ -97,15 +101,18 @@ public class DetallesFragment extends Fragment {
 						select_series+="Ingresos";
 					}
 					else if(series_index == 2){
-						select_series+="Tarjeta";
+						select_series+="Saldo";
 					}
 					else if(series_index == 3){
-						select_series+="Efectivo";
+						select_series+="Tarjeta";
 					}
 					else if(series_index == 4){
-						select_series+="Cheques";
+						select_series+="Efectivo";
 					}
 					else if(series_index == 5){
+						select_series+="Cheques";
+					}
+					else if(series_index == 6){
 						select_series+="Vales";
 					}
 					
@@ -125,17 +132,29 @@ public class DetallesFragment extends Fragment {
 	
 	public void OpenChart(){
 		
-		ArrayList<Integer> Ingreso;
-		ArrayList<Integer> Egreso ;
-		//ArrayList<Integer> Saldo = calculaProm(Ingreso,Egreso);
+		ArrayList<Spending> Ingreso = SpendingLab.get(getActivity()).getSpendingsByTypeAndMonth(1, 0);
+		ArrayList<Spending> Egreso = SpendingLab.get(getActivity()).getSpendingsByTypeAndMonth(1, 1);
+		ArrayList<Double> Saldo = calculaProm(Ingreso,Egreso);
 		
 		XYSeries sIngreso = new XYSeries("Ingreso");
+		for(int i = 0;i<Ingreso.size();i++){
+			sIngreso.add(i, Ingreso.get(i).getAmount());
+		}
 		
 		XYSeries sEgreso = new XYSeries("Egreso");
+		for(int i = 0;i<Egreso.size();i++){
+			sEgreso.add(i, Egreso.get(i).getAmount());
+		}
+		
+		XYSeries sSaldo = new XYSeries("Saldo");
+		for(int i = 0;i< Saldo.size();i++){
+			sSaldo.add(i, Saldo.get(i).doubleValue());
+		}
 		
 		dataset = new XYMultipleSeriesDataset();
 		dataset.addSeries(sIngreso);
 		dataset.addSeries(sEgreso);
+		dataset.addSeries(sSaldo);
 		
 		//Caracteristicas de cada trazo
 		egresos = new XYSeriesRenderer();
@@ -151,6 +170,13 @@ public class DetallesFragment extends Fragment {
 		ingresos.setDisplayChartValues(true);
 		ingresos.setLineWidth(4);
 		ingresos.setFillPoints(true);
+		
+		saldo = new XYSeriesRenderer();
+		saldo.setColor(Color.BLUE);
+		saldo.setPointStyle(PointStyle.X);
+		saldo.setDisplayChartValues(true);
+		saldo.setLineWidth(4);
+		saldo.setFillPoints(true);
 		
 		tarjeta = new XYSeriesRenderer();
 		tarjeta.setColor(Color.YELLOW);
@@ -191,12 +217,13 @@ public class DetallesFragment extends Fragment {
 		mCanvas.setShowGrid(true);
 		mCanvas.setClickEnabled(true);
 		//Checar que mes es para cargar el numero de dias
-		for(int i = 0; i< m30.length;i++){
-			mCanvas.addXTextLabel(i, m30[i]);
+		for(int i = 0; i< m31.length;i++){
+			mCanvas.addXTextLabel(i, m31[i]);
 		}
 		
 		mCanvas.addSeriesRenderer(ingresos);
 		mCanvas.addSeriesRenderer(egresos);
+		mCanvas.addSeriesRenderer(saldo);
 		
 		
 		
@@ -204,10 +231,21 @@ public class DetallesFragment extends Fragment {
 	}
 	
 	@Override
+	public void onCreateOptionsMenu(Menu menu,MenuInflater inflater){
+		inflater.inflate(R.menu.add_gasto, menu);
+	}
+	
+
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
 		switch (item.getItemId()){
 			case android.R.id.home:
-				NavUtils.navigateUpFromSameTask(getActivity());
+				//NavUtils.navigateUpFromSameTask(getActivity());
+				Intent i = new Intent(getActivity(),DetallesActivity.class);
+				startActivityForResult(i,0);
+				/*Intent i = new Intent(SpendingListFragment.this, DetallesActivity.class);
+				 startActivityForResult(i,0);
+				 */
 			default:
 				return super.onOptionsItemSelected(item);
 		}

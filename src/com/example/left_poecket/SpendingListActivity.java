@@ -16,6 +16,7 @@ import android.util.Log;
 
 public class SpendingListActivity extends FragmentActivity {
 	SpendingPageAdapter mPagerAdapter;
+	
 	 @Override
 	 protected void onCreate(Bundle savedInstance){
 		 super.onCreate(savedInstance);

@@ -54,6 +54,35 @@ public class SpendingLab {
     	
     	return orderedS;
     }
+    public ArrayList<Spending> getSpendingsByTypeAndMonth(int month,int type){
+    	ArrayList<Spending> orderedS = new ArrayList<Spending>();
+    	ArrayList<Spending> auxS = new ArrayList<Spending>();
+    	
+    	for(Spending s: getSpendings()){
+    		Date d = s.getDate();
+    		int t = s.getType();
+    		if(d.getMonth() == month){
+    			if(t == type){
+    				orderedS.add(s);
+    			}
+    		}
+    	}
+    	
+    	
+    	return orderedS;
+    }
+    public ArrayList<Spending> getSpendingsByFormPayment(int form){
+    	ArrayList<Spending> orderedS = new ArrayList<Spending>();
+    	
+    	for(Spending s: getSpendings()){
+    		int f = s.getForm_payment();
+    		if(f == form){
+    			orderedS.add(s);
+    		}
+    	}
+    	
+    	return orderedS;
+    }
     public boolean saveSpendings(){
     	try {
     		mSerializer.saveSpendings(mSpendings);

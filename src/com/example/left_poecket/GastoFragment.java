@@ -8,12 +8,15 @@ import java.util.StringTokenizer;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +35,7 @@ public class GastoFragment extends Fragment {
 	Spinner mModoPago;
 	Spinner mTipoPago;
 	Button mGuardar;
-	//Button mCalendario;
+	Calendar mCalendar;
 	
 	private String initialDate;
 	private String initialMonth;
@@ -90,12 +93,12 @@ public class GastoFragment extends Fragment {
 			}
 		});
 		
+		final Calendar calendar = Calendar.getInstance();
+		
 		mFecha = (EditText) v.findViewById(R.id.txtFecha);
 		Date today = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 		mFecha.setText(formatter.format(today));
-		
-		//mCalendario = (Button) v.findViewById(R.id.btnCalendario);
 		mFecha.setOnClickListener(new View.OnClickListener() {
 			
 			@SuppressWarnings("deprecation")
@@ -117,7 +120,7 @@ public class GastoFragment extends Fragment {
 					} else {
 						dtTxt = Calendar.getInstance();
 						if(dialog == null)
-							dialog = new DatePickerDialog(v.getContext(),new PickDate(),dtTxt.getTime().getYear(),dtTxt.getTime().getMonth(),
+							dialog = new DatePickerDialog(v.getContext(),new PickDate(),calendar.get(Calendar.YEAR),dtTxt.getTime().getMonth(),
                                     dtTxt.getTime().getDay());
 						
 							dialog.updateDate(dtTxt.getTime().getYear(),dtTxt.getTime().getMonth(),
@@ -142,11 +145,24 @@ public class GastoFragment extends Fragment {
 	}
 
 	@Override
+	public void onCreateOptionsMenu(Menu menu,MenuInflater inflater){
+		inflater.inflate(R.menu.add_gasto, menu);
+	}
+	
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
 		switch (item.getItemId()){
 		case android.R.id.home:
-			NavUtils.navigateUpFromSameTask(getActivity());
+			Intent i = new Intent(getActivity(),DetallesActivity.class);
+			NavUtils.navigateUpTo(getActivity(), i);
+			//NavUtils.navigateUpFromSameTask(getActivity());
+			
+			startActivityForResult(i,0);
 			return true;
+		case R.id.List_Gasto:
+			Intent j = new Intent(getActivity(),SpendingListActivity.class);
+			startActivityForResult(j,0);
+  			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
