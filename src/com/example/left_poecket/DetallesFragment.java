@@ -240,6 +240,9 @@ public class DetallesFragment extends Fragment {
 		switch (item.getItemId()){
 			case android.R.id.home:
 				NavUtils.navigateUpFromSameTask(getActivity());
+				/*Intent i = new Intent(SpendingListFragment.this, DetallesActivity.class);
+				 startActivityForResult(i,0);
+				 * */
 			default:
 				return super.onOptionsItemSelected(item);
 		}

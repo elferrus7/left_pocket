@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -34,7 +35,7 @@ public class GastoFragment extends Fragment {
 	Spinner mModoPago;
 	Spinner mTipoPago;
 	Button mGuardar;
-	//Button mCalendario;
+	Calendar mCalendar;
 	
 	private String initialDate;
 	private String initialMonth;
@@ -92,12 +93,12 @@ public class GastoFragment extends Fragment {
 			}
 		});
 		
+		final Calendar calendar = Calendar.getInstance();
+		
 		mFecha = (EditText) v.findViewById(R.id.txtFecha);
 		Date today = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 		mFecha.setText(formatter.format(today));
-		
-		//mCalendario = (Button) v.findViewById(R.id.btnCalendario);
 		mFecha.setOnClickListener(new View.OnClickListener() {
 			
 			@SuppressWarnings("deprecation")
@@ -119,7 +120,7 @@ public class GastoFragment extends Fragment {
 					} else {
 						dtTxt = Calendar.getInstance();
 						if(dialog == null)
-							dialog = new DatePickerDialog(v.getContext(),new PickDate(),dtTxt.getTime().getYear(),dtTxt.getTime().getMonth(),
+							dialog = new DatePickerDialog(v.getContext(),new PickDate(),calendar.get(Calendar.YEAR),dtTxt.getTime().getMonth(),
                                     dtTxt.getTime().getDay());
 						
 							dialog.updateDate(dtTxt.getTime().getYear(),dtTxt.getTime().getMonth(),
@@ -155,6 +156,9 @@ public class GastoFragment extends Fragment {
 			NavUtils.navigateUpFromSameTask(getActivity());
 			return true;
 		case R.id.List_Gasto:
+			/*Intent i = new Intent(GastoFragment.this, SpendingListActivity.class);
+            startActivityForResult(i, 0);
+            */
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

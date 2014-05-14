@@ -56,9 +56,14 @@ public class SpendingListFragment extends ListFragment {
 				NavUtils.navigateUpFromSameTask(getActivity());
 				return true;
 			case R.id.add_Gasto:
-				
+				/*Intent i = new Intent(SpendingListFragment.this, MainActivity.class);
+	            startActivityForResult(i, 0);
+	            */
 				return true;
 			case R.id.detalles_Gasto:
+				/*Intent i = new Intent(SpendingListFragment.this, DetallesActivity.class);
+				 startActivityForResult(i,0);
+				 */
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
